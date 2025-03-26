@@ -6,11 +6,9 @@
 void Mutex::lock() {
     while (locked.test_and_set(memory_order_acquire)) {
         this_thread::yield();
-    }
-}  
+    }}  
 
 // Unlocks the mutex and frees the related resources for other threads
 
 void Mutex::unlock() {
-    locked.clear(memory_order_release);
-}
+    locked.clear(memory_order_release);}
