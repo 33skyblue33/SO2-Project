@@ -127,8 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Mutex.cpp" />
-    <ClCompile Include="solution1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mutex.h" />

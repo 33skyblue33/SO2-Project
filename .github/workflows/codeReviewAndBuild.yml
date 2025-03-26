@@ -1,0 +1,35 @@
+name: C++ Code Verification and Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install necessary dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip make g++
+          pip3 install cpplint
+
+      # Verify the code using cpplint
+      - name: Run cpplint
+        id: cpplint
+        run: |
+          cpplint --recursive . > cpplint-report.txt || exit 1
+
+      # Build using Makefile if linting is successful
+      - name: Build with Makefile
+        if: success()
+        run: |
+          make
